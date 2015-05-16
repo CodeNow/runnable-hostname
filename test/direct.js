@@ -93,7 +93,7 @@ describe('hostname', function () {
       beforeEach(function (done) {
         ctx.opts.masterPod = false;
         // non-master-pod instances have branch in name
-        ctx.opts.instanceName = ctx.opts.branch + ctx.opts.instanceName;
+        ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
         done();
       });
 
