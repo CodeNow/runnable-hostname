@@ -5,15 +5,7 @@ util for generating an instance's elastic or direct hostname
 ```js
 var hostname = require('runnable-hostname');
 
-hostname.elastic({
-  shortHash: 'abcdef',
-  instanceName: 'instanceName',
-  branch: 'branch',
-  ownerUsername: 'ownerUsername',
-  masterPod: 'masterPod',
-  userContentDomain: 'runnableapp.com'
-});
-// instanceName-staging-ownerUsername.runnableapp.com
+// Non-master Pod Instance
 
 hostname.direct({
   shortHash: 'abcdef',
@@ -25,6 +17,17 @@ hostname.direct({
   userContentDomain: 'runnableapp.com'
 });
 // abcdef-instanceName-staging-ownerUsername.runnableapp.com
+hostname.elastic({
+  shortHash: 'abcdef',
+  instanceName: 'branch-instanceName',
+  branch: 'branch',
+  ownerUsername: 'ownerUsername',
+  masterPod: false,
+  userContentDomain: 'runnableapp.com'
+});
+// instanceName-staging-ownerUsername.runnableapp.com
+
+// Master Pod Instance
 
 hostname.direct({
   shortHash: 'abcdef',
@@ -36,4 +39,13 @@ hostname.direct({
   userContentDomain: 'runnableapp.com'
 });
 // abcdef-instanceName-staging-ownerUsername.runnableapp.com
+hostname.elastic({
+  shortHash: 'abcdef',
+  instanceName: 'instanceName',
+  branch: 'branch',
+  ownerUsername: 'ownerUsername',
+  masterPod: true,
+  userContentDomain: 'runnableapp.com'
+});
+// instanceName-staging-ownerUsername.runnableapp.com
 ```
