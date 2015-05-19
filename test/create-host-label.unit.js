@@ -25,7 +25,7 @@ describe('create host label', function () {
       {
         key: 'repoName',
         val: 'repoName',
-        min: 'repoName'.length
+        min: 'repo+Name'.length
       },
       {
         key: 'shortHash',
