@@ -25,7 +25,7 @@ describe('create host label', function () {
       {
         key: 'repoName',
         val: 'repoName',
-        min: 'repoName'.length
+        min: 'repo+Name'.length
       },
       {
         key: 'shortHash',
@@ -35,6 +35,29 @@ describe('create host label', function () {
     ]);
 
     expect(label).to.equal('abcdef-repoName-staging-ownerUsername');
+    done();
+  });
+  
+  it('should create a host label and replace any invalid characters', function (done) {
+    var label = createHostLabel('{shortHash}-{repoName}-staging-{ownerUsername}', [
+      {
+        key: 'ownerUsername',
+        val: 'owner_Username',
+        max: 39 // maxlength of username in github is 39
+      },
+      {
+        key: 'repoName',
+        val: 'repo+Name',
+        min: 'repoName'.length
+      },
+      {
+        key: 'shortHash',
+        val: 'abcdef',
+        min: 6
+      }
+    ]);
+
+    expect(label).to.equal('abcdef-repo-Name-staging-owner-Username');
     done();
   });
 });
