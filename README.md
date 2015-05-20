@@ -9,7 +9,7 @@ var hostname = require('runnable-hostname');
 
 hostname.direct({
   shortHash: 'abcdef',
-  // non-masterPod instance has branch in name
+  // non-masterPod instance has branch in name, so branch is required
   instanceName: 'branch-instanceName',
   branch: 'branch',
   ownerUsername: 'ownerUsername',
@@ -31,9 +31,8 @@ hostname.elastic({
 
 hostname.direct({
   shortHash: 'abcdef',
-  // masterPod instance has does NOT have branch in name
+  // masterPod instance has does NOT have branch in name, so branch is not required
   instanceName: 'instanceName',
-  branch: 'branch',
   ownerUsername: 'ownerUsername',
   masterPod: true,
   userContentDomain: 'runnableapp.com'
@@ -42,7 +41,6 @@ hostname.direct({
 hostname.elastic({
   shortHash: 'abcdef',
   instanceName: 'instanceName',
-  branch: 'branch',
   ownerUsername: 'ownerUsername',
   masterPod: true,
   userContentDomain: 'runnableapp.com'
