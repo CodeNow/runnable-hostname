@@ -37,7 +37,7 @@ describe('create host label', function () {
     expect(label).to.equal('abcdef-repoName-staging-ownerUsername');
     done();
   });
-  
+
   it('should create a host label and replace any invalid characters', function (done) {
     var label = createHostLabel('{shortHash}-{repoName}-staging-{ownerUsername}', [
       {
