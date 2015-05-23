@@ -1,6 +1,6 @@
 {
   "name": "runnable-hostname",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "generate a runnable elastic or direct hostname from parts",
   "main": "index.js",
   "directories": {
