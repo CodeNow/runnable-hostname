@@ -90,31 +90,66 @@ describe('elastic', function () {
     });
 
     describe('masterPod: false', function() {
-      beforeEach(function (done) {
-        ctx.opts.masterPod = false;
-        // non-master-pod instances have branch in name
-        ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
-        done();
-      });
 
-      it('should create an elastic hostname', function (done) {
-        expect(
-          elastic(ctx.opts)
-        ).to.equal('instanceName-staging-ownerUsername.domain.com');
-        done();
-      });
-
-      describe('wierd mismatch casing', function () {
+      describe('valid chars in branch name', function() {
         beforeEach(function (done) {
-          ctx.opts.branch = ctx.opts.branch.toLowerCase();
+          ctx.opts.masterPod = false;
+          // non-master-pod instances have branch in name
+          ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
           done();
         });
 
         it('should create an elastic hostname', function (done) {
           expect(
             elastic(ctx.opts)
-          ).to.equal('instancename-staging-ownerUsername.domain.com');
+          ).to.equal('instanceName-staging-ownerUsername.domain.com');
           done();
+        });
+
+        describe('wierd mismatch casing', function () {
+          beforeEach(function (done) {
+            ctx.opts.branch = ctx.opts.branch.toLowerCase();
+            done();
+          });
+
+          it('should create an elastic hostname', function (done) {
+            expect(
+              elastic(ctx.opts)
+            ).to.equal('instancename-staging-ownerUsername.domain.com');
+            done();
+          });
+        });
+      });
+
+      describe('invalid characters in branch name', function () {
+        beforeEach(function (done) {
+          ctx.opts.masterPod = false;
+          ctx.opts.branch = 'branch/Face';
+          var cleanBranch = ctx.opts.branch.replace('/', '-');
+          // non-master-pod instances have branch in name
+          ctx.opts.instanceName = cleanBranch +'-'+ ctx.opts.instanceName;
+          done();
+        });
+
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('instanceName-staging-ownerUsername.domain.com');
+          done();
+        });
+
+        describe('wierd mismatch casing', function () {
+          beforeEach(function (done) {
+            ctx.opts.branch = ctx.opts.branch.toLowerCase();
+            done();
+          });
+
+          it('should create an elastic hostname', function (done) {
+            expect(
+              elastic(ctx.opts)
+            ).to.equal('instancename-staging-ownerUsername.domain.com');
+            done();
+          });
         });
       });
     });
