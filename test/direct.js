@@ -83,7 +83,7 @@ describe('hostname', function () {
       it('should create an direct hostname', function (done) {
         expect(
           direct(ctx.opts)
-        ).to.equal('abcdef-instanceName-staging-ownerUsername.domain.com');
+        ).to.equal('abcdef-instancename-staging-ownerusername.domain.com');
 
         done();
       });
@@ -100,7 +100,7 @@ describe('hostname', function () {
       it('should create an direct hostname', function (done) {
         expect(
           direct(ctx.opts)
-        ).to.equal('abcdef-instanceName-staging-ownerUsername.domain.com');
+        ).to.equal('abcdef-instancename-staging-ownerusername.domain.com');
         done();
       });
 
@@ -113,7 +113,7 @@ describe('hostname', function () {
         it('should create an direct hostname', function (done) {
           expect(
             direct(ctx.opts)
-          ).to.equal('abcdef-instancename-staging-ownerUsername.domain.com');
+          ).to.equal('abcdef-instancename-staging-ownerusername.domain.com');
           done();
         });
       });

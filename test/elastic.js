@@ -83,7 +83,7 @@ describe('elastic', function () {
       it('should create an elastic hostname', function (done) {
         expect(
           elastic(ctx.opts)
-        ).to.equal('instanceName-staging-ownerUsername.domain.com');
+        ).to.equal('instancename-staging-ownerusername.domain.com');
 
         done();
       });
@@ -102,7 +102,7 @@ describe('elastic', function () {
         it('should create an elastic hostname', function (done) {
           expect(
             elastic(ctx.opts)
-          ).to.equal('instanceName-staging-ownerUsername.domain.com');
+          ).to.equal('instancename-staging-ownerusername.domain.com');
           done();
         });
 
@@ -115,7 +115,7 @@ describe('elastic', function () {
           it('should create an elastic hostname', function (done) {
             expect(
               elastic(ctx.opts)
-            ).to.equal('instancename-staging-ownerUsername.domain.com');
+            ).to.equal('instancename-staging-ownerusername.domain.com');
             done();
           });
         });
@@ -134,7 +134,7 @@ describe('elastic', function () {
         it('should create an elastic hostname', function (done) {
           expect(
             elastic(ctx.opts)
-          ).to.equal('instanceName-staging-ownerUsername.domain.com');
+          ).to.equal('instancename-staging-ownerusername.domain.com');
           done();
         });
 
@@ -147,7 +147,7 @@ describe('elastic', function () {
           it('should create an elastic hostname', function (done) {
             expect(
               elastic(ctx.opts)
-            ).to.equal('instancename-staging-ownerUsername.domain.com');
+            ).to.equal('instancename-staging-ownerusername.domain.com');
             done();
           });
         });

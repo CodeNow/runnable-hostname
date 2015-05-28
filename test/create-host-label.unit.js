@@ -34,7 +34,7 @@ describe('create host label', function () {
       }
     ]);
 
-    expect(label).to.equal('abcdef-repoName-staging-ownerUsername');
+    expect(label).to.equal('abcdef-reponame-staging-ownerusername');
     done();
   });
 
@@ -57,7 +57,7 @@ describe('create host label', function () {
       }
     ]);
 
-    expect(label).to.equal('abcdef-repo-Name-staging-owner-Username');
+    expect(label).to.equal('abcdef-repo-name-staging-owner-username');
     done();
   });
 });
