@@ -88,6 +88,20 @@ describe('hostname', function () {
           done();
         });
       })
+      describe('isolated non-repo container (not master)', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.instanceName = 'h32e34--redis';
+          delete ctx.opts.branch;
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            direct(ctx.opts)
+          ).to.equal('h32e34--redis-staging-ownerusername.domain.com');
+          done();
+        });
+      });
       describe('isolation master', function() {
         beforeEach(function (done) {
           ctx.opts.isolated = 'das3h343k12hj3g4';
@@ -132,6 +146,7 @@ describe('hostname', function () {
         ).to.equal('abcdef-instancename-staging-ownerusername.domain.com');
         done();
       });
+
 
       describe('wierd mismatch casing', function () {
         beforeEach(function (done) {

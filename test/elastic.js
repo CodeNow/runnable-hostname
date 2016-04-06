@@ -74,20 +74,48 @@ describe('elastic', function () {
       };
       done();
     });
-
     describe('isolated: true', function() {
-      beforeEach(function (done) {
-        ctx.opts.isolated = 'das3h343k12hj3g4';
-        ctx.opts.instanceName = 'h32e34--instanceName';
-        done();
+      describe('isolated container (not master)', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.instanceName = 'h32e34--instanceName';
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('instancename-staging-ownerusername.domain.com');
+          done();
+        });
       });
-
-      it('should create an elastic hostname', function (done) {
-        expect(
-          elastic(ctx.opts)
-        ).to.equal('instancename-staging-ownerusername.domain.com');
-        done();
+      describe('isolated non-repo container (not master)', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.instanceName = 'h32e34--redis';
+          delete ctx.opts.branch;
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('redis-staging-ownerusername.domain.com');
+          done();
+        });
       });
+      describe('isolation master', function() {
+        beforeEach(function (done) {
+          ctx.opts.isolated = 'das3h343k12hj3g4';
+          ctx.opts.isIsolationGroupMaster = true;
+          ctx.opts.instanceName = ctx.opts.branch +'-'+ ctx.opts.instanceName;
+          done();
+        });
+        it('should create an elastic hostname', function (done) {
+          expect(
+            elastic(ctx.opts)
+          ).to.equal('instancename-staging-ownerusername.domain.com');
+          done();
+        });
+      })
     });
 
     describe('masterPod: true', function() {
